@@ -1,0 +1,19 @@
+.Home{
+    .GamesList {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background-color: #40427A;
+        height: 1000px;
+        &-Container{
+            width: 1200px;
+            margin: 40px auto;
+        }
+        &-Card {
+            background-color: white;
+            margin: 10px;
+            width: 100%;
+            height: 300px;
+        }
+    }
+}
