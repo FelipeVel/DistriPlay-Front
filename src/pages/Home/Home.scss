@@ -3,17 +3,47 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        background-color: #40427A;
-        height: 1000px;
         &-Container{
             width: 1200px;
             margin: 40px auto;
+            background-color: white;
         }
         &-Card {
-            background-color: white;
             margin: 10px;
-            width: 100%;
-            height: 300px;
+            display: flex;
+            &-Image {
+                width: 30%;
+                margin-right: 10px;
+                img{
+                    width: 100%;
+                }
+            }
+            &-Info{
+                &-Title{
+                    font-weight: bold;
+                    min-height: 30px;
+                }
+            }
+        }
+        &-Block{
+            &-Title{
+                font-size: 30px;
+                font-weight: bold;
+                margin: 10px;
+                height: 30px;
+                margin-bottom: 20px;
+            }
         }
     }
+    [class*="col"] {
+        border-right: #40427A solid 1px;
+        margin: 5px;
+        &:last-child {
+            border-right: none;
+        }
+    }
+}
+
+body{
+    background-color: #40427A;
 }

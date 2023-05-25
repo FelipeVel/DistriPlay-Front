@@ -1,6 +1,5 @@
 .Header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -19,28 +18,28 @@
         text-decoration: none;
         font-size: larger;
         color: white;
+        margin-bottom: 20px;
         .Header-Logo__img{
             width: 50px;
             height: 50px;
             margin-right: 10px;
         }
     }
-    .navbar{
-        &-collapse{
-            width: 95%;
-            .navbar-nav{
-                list-style: none;
-                display: flex;
-                justify-content: flex-end;
-                width: 100%;
-                li a{
-                    color: white;
-                    text-decoration: none;
-                }
-                .nav-item{
-                    margin: 0 10px;
-                }
+    &-LoginNav{
+        width: 95%;
+        ul{
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            li a{
+                color: white;
+                text-decoration: none;
             }
+        }
+        &-Item{
+            margin: 0 10px;
+            cursor: pointer;
         }
     }
     .NavList{

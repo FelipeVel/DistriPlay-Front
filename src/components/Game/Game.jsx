@@ -6,29 +6,51 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-const Game = ({ game, addToCart }) => {
-    const { id, name, price, image } = game;
-    const addGame = () => {
-        addToCart(game);
-    };
+const Game = ({ game, showPlataforma }) => {
+    const {id, costo, idioma, imagen, nombre, plataforma} = game;
 
+    const addCart = () => {
+        const user = localStorage.getItem('user');
+        if (user) {
+            return () => {
+                const cart = localStorage.getItem('cart');
+                if (cart) {
+                    const cartArray = JSON.parse(cart);
+                    cartArray.push(game);
+                    localStorage.setItem('cart', JSON.stringify(cartArray));
+                } else {
+                    localStorage.setItem('cart', JSON.stringify([game]));
+                }
+            };
+        } else {
+            return () => {
+                window.location.href = '/login';
+            };
+        }
+    };
     return (
-        <div className='col-md-4'>
-            <div className='card mb-4 shadow-sm'>
-                <img
-                    className='card-img-top'
-                    src={image}
-                    alt='Card image cap'
-                />
-                <div className='card-body'>
-                    <h5 className='card-title'>{name}</h5>
-                    <p className='card-text'>${price}</p>
-                    <button
-                        type='button'
-                        className='btn btn-primary'
-                        onClick={addGame}
-                    >
+        <div className='GamesList-Card'>
+            <div className='GamesList-Card-Image'>
+                <img src={imagen} alt={nombre} />
+            </div>
+            <div className='GamesList-Card-Info'>
+                <div className='GamesList-Card-Info-Title'>
+                    {nombre}
+                </div>
+                <div className='GamesList-Card-Info-Price'>
+                    ${costo}
+                </div>
+                {showPlataforma?
+                <div className='GamesList-Card-Info-Platform'>
+                    Plataforma: {plataforma}
+                </div>:''}
+                <div className='GamesList-Card-Info-Language'>
+                    {idioma}
+                </div>
+                <div className='GamesList-Card-Info-Button'>
+                    <button className='GamesList-Card-Info-Button-Add' onClick={addCart()}>
                         <FontAwesomeIcon icon={faShoppingCart} />
+                        Agregar al carrito
                     </button>
                 </div>
             </div>
@@ -37,8 +59,7 @@ const Game = ({ game, addToCart }) => {
 }
 
 Game.propTypes = {
-    game: PropTypes.object.isRequired,
-    addToCart: PropTypes.func.isRequired
+    game: PropTypes.object.isRequired
 };
 
 export default Game;
